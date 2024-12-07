@@ -1,16 +1,26 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println(flourPacker(2,4,14));
+        System.out.println(canPack(2,1,5));
     }
-    public static boolean flourPacker(int bigCount, int smallCount, int goal) {
-        int big= (bigCount*5);
-        int small=smallCount*1;
-        int totalCount = big+small;
-        if(totalCount == goal){
-            return true;
+    public static boolean canPack(int bigCount, int smallCount, int goal) {
+        if (bigCount < 0 || smallCount < 0 || goal < 0) {
+            return false;
+            }
+        boolean result = false;
+        int big = (bigCount * 5);
+        if(big>=goal){
+            int bigWeightValue =5;
+            int remaining = goal % bigWeightValue;
+            if(smallCount >=remaining ){
+                return true;
+            }
+        }else{
+            if(smallCount >= goal-big){
+                result = true;
+            }
         }
 
-        return false;
-    }
 
+        return result;
+    }
 }
